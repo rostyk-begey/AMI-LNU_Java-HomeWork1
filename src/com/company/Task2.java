@@ -4,16 +4,6 @@ import java.util.Scanner;
 import java.io.File;
 
 public class Task2 {
-    private static String transform(String str) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < str.length(); ++i) {
-            if (i % 2 != 0) {
-                result.append(str.charAt(i));
-            }
-        }
-        return result.toString();
-    }
-
     private static void execute(String[] words) {
         System.out.print("Result: ");
         for (var word : words) {
