@@ -1,0 +1,6 @@
+SecondarySchool SecondarySchool_1 Address_1 2010 3 600
+SecondarySchool SecondarySchool_2 Address_2 2012 4 450
+SecondarySchool SecondarySchool_3 Address_3 1999 1 800
+University University_1 Address_4 1950 3 20
+University University_2 Address_5 1923 2 27
+University University_3 Address_6 2000 2 30

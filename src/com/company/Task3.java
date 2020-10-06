@@ -1,6 +1,8 @@
 package com.company;
 
+import java.io.File;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Task3 {
@@ -36,15 +38,42 @@ public class Task3 {
     }
 
     private static void execute(int accrLevel) {
-        var array = new School[]
-                {
-                        new SecondarySchool("SecondarySchool_1", "Address_1", 2010, 3, 600),
-                        new SecondarySchool("SecondarySchool_2", "Address_2", 2012, 4, 450),
-                        new SecondarySchool("SecondarySchool_3", "Address_3", 1999, 1, 800),
-                        new University("University_1", "Address_4", 1950, 3, 20),
-                        new University("University_2", "Address_5", 1923, 2, 27),
-                        new University("University_3", "Address_6", 2000, 2, 30)
-                };
+        var list = new LinkedList<School>();
+
+        try {
+            Scanner input = new Scanner(new File("src/input.txt"));
+            while (input.hasNextLine()) {
+                String line = input.nextLine();
+                String[] inputArgs = line.split("\\s+");
+                var type = inputArgs[0];
+                School instance;
+
+                if (type.equals("SecondarySchool")) {
+                    instance = new SecondarySchool(
+                            inputArgs[1],
+                            inputArgs[2],
+                            Integer.parseInt(inputArgs[3]),
+                            Integer.parseInt(inputArgs[4]),
+                            Integer.parseInt(inputArgs[5])
+                    );
+                } else if (type.equals("University")) {
+                    instance = new University(
+                            inputArgs[1],
+                            inputArgs[2],
+                            Integer.parseInt(inputArgs[3]),
+                            Integer.parseInt(inputArgs[4]),
+                            Integer.parseInt(inputArgs[5])
+                    );
+                } else {
+                    throw new Exception("Invalid instance name");
+                }
+                list.add(instance);
+            }
+        } catch (Exception exception) {
+            System.out.println(exception.toString());
+        }
+
+        var array = list.toArray(new School[0]);
 
         System.out.printf("Array: %s%n", Arrays.toString(array));
         Arrays.sort(array);
@@ -62,6 +91,7 @@ public class Task3 {
     }
 
     public static void RunTest() {
+        System.out.println("Running with accreditation level: 2");
         execute(2);
     }
 }
